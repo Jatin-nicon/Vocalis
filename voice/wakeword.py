@@ -36,13 +36,13 @@ except ImportError:
 class WakeWordDetector:
     """
     High-accuracy, low-latency Hybrid Wake Word Detector.
-    Supports "Hey Jester", "Jester", and "Hey Jarvis":
+    Supports "Hey Jarvis":
       1. OpenWakeWord ONNX acoustic model (instant 0ms trigger for "Hey Jarvis").
-      2. Fast VAD + local tiny.en Whisper keyword spotter for "Hey Jester" / "Jester" (~300ms trigger).
+      2. Fast VAD + local tiny.en Whisper keyword spotter for "Hey Jarvis" (~300ms trigger).
     """
     def __init__(
         self,
-        wake_word: str = "hey_jester",
+        wake_word: str = "hey_jarvis",
         threshold: float = 0.45,
         speech_threshold: float = 0.012,
         on_wake_detected: Callable[[Optional[str]], None] | None = None,
@@ -72,11 +72,11 @@ class WakeWordDetector:
         if not self.enabled:
             return
 
-        # 1. Fast Whisper tiny.en for "Hey Jester" keyword spotting
+        # 1. Fast Whisper tiny.en for "Hey Jarvis" keyword spotting
         if self._whisper_model is None and _WHISPER_AVAILABLE:
             try:
                 self._whisper_model = WhisperModel("tiny.en", device="cpu", compute_type="int8")
-                print("[WakeWord] Fast 'Hey Jester' acoustic verifier ready (tiny.en).")
+                print("[WakeWord] Fast 'Hey Jarvis' acoustic verifier ready (tiny.en).")
             except Exception as e:
                 print(f"[WakeWord Warning] Failed to initialize tiny.en verifier: {e}")
 
@@ -110,7 +110,7 @@ class WakeWordDetector:
         self._listen_thread = threading.Thread(target=self._listen_loop, daemon=True)
         self._listen_thread.start()
 
-        print("[WakeWord] Listening for \"Hey Jester\" (or \"Hey Jarvis\") in the background...")
+        print("[WakeWord] Listening for \"Hey Jarvis\" in the background...")
 
     def pause(self):
         self._paused = True
@@ -148,11 +148,10 @@ class WakeWordDetector:
             threading.Thread(target=self.on_wake_detected, args=(detected_phrase,), daemon=True).start()
 
     def _verifier_loop(self):
-        """Processes buffered speech bursts and detects 'Hey Jester' with tiny.en in ~300ms."""
+        """Processes buffered speech bursts and detects 'Hey Jarvis' with tiny.en in ~300ms."""
         target_keywords = {
-            "jester", "hey jester", "chester", "hey chester",
-            "gesture", "hey gesture", "jasper", "hey jasper",
-            "tester", "hey tester", "jarvis", "hey jarvis"
+            "jarvis", "hey jarvis",
+            "jervis", "hey jervis", "jarviss", "hey jarviss"
         }
 
         while self._running:
@@ -175,7 +174,7 @@ class WakeWordDetector:
                     language="en",
                     beam_size=1,
                     temperature=0.0,
-                    initial_prompt="Hey Jester, Jester, Hey Jarvis, Jarvis",
+                    initial_prompt="Hey Jarvis, Jarvis",
                 )
                 text = " ".join(s.text for s in segs).strip().lower()
                 if not text:
@@ -213,7 +212,7 @@ class WakeWordDetector:
             except Exception:
                 pass
 
-        # 2. Fast Voice Activity & Keyword Buffering for "Hey Jester"
+        # 2. Fast Voice Activity & Keyword Buffering for "Hey Jarvis"
         chunk_float = chunk_1d.astype(np.float32) / 32768.0
         amp = float(np.max(np.abs(chunk_float)))
 

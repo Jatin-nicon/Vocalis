@@ -55,7 +55,7 @@ def answer_question_with_llm(query: str) -> Optional[str]:
         {
             "role": "system",
             "content": (
-                "You are Jester, a helpful desktop voice assistant. "
+                "You are Jarvis, a helpful desktop voice assistant. "
                 "Answer the user's question directly and concisely in 1 to 2 clear sentences. "
                 "Do NOT include thinking, reasoning, or safety disclaimers in your answer. "
                 "Do NOT use markdown, bullet points, asterisks, or lists, because your answer will be spoken aloud."

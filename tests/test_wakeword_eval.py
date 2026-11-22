@@ -12,7 +12,7 @@ model = OWWModel(wakeword_models=['hey_jarvis'], inference_framework='onnx')
 
 temp_wav = tempfile.mktemp(suffix='.wav')
 
-for phrase in ['Hey Jester', 'Jester', 'Hey Jarvis']:
+for phrase in ['Hey Jarvis', 'Jarvis']:
     stream.Open(temp_wav, 3)
     sapi.AudioOutputStream = stream
     sapi.Speak(phrase)

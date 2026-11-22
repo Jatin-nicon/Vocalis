@@ -19,7 +19,7 @@ class VisualHUD:
     def __init__(self, enabled: bool = True):
         self.enabled = enabled and _TKINTER_AVAILABLE
         self.state = "idle"
-        self.status_title = "JESTER ONLINE"
+        self.status_title = "JARVIS ONLINE"
         self.status_detail = "Press [Ctrl + Space]"
         self.amplitude = 0.0
         self._root: Optional[tk.Tk] = None
@@ -47,7 +47,7 @@ class VisualHUD:
     def set_state(self, new_state: str, text: str = ""):
         self.state = new_state
         if new_state == "idle":
-            self.status_title = "JESTER STANDBY"
+            self.status_title = "JARVIS STANDBY"
             self.status_detail = text or "Press [Ctrl + Space]"
         elif new_state == "listening":
             self.status_title = "COMMAND LISTENING"

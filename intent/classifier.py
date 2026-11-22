@@ -43,7 +43,7 @@ def clean_conversational_prefix(text: str) -> str:
     s = text.strip()
     prefix_pattern = (
         r"^(?:"
-        r"(?:hey\s+|hi\s+|ok\s+|okay\s+)?(?:jester|jarvis|assistant|computer)|"
+        r"(?:hey\s+|hi\s+|ok\s+|okay\s+)?(?:jarvis|assistant|computer)|"
         r"can\s+you(?:\s+please)?|"
         r"could\s+you(?:\s+please)?|"
         r"would\s+you(?:\s+please)?|"

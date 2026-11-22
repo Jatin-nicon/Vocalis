@@ -173,7 +173,7 @@ class TestCommandQuestionDifferentiation(unittest.TestCase):
             ("what is the date", "Today is"),
             ("what is the battery status", "Battery"),
             ("what is the volume", "volume"),
-            ("who are you", "I am Jester"),
+            ("who are you", "I am Jarvis"),
         ]
         for q, expected_substr in queries:
             res = self.router.route_and_execute(q)

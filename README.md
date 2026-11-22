@@ -1,6 +1,6 @@
-# Voice-PC-Assistant 🎙️💻
+# Vocalis 🎙️💻
 
-A modular, local-first voice assistant designed to control your Windows PC with voice commands and provide fast speech-to-text dictation (Wispr Flow style).
+**Jarvis** is the voice assistant behind **Vocalis** - a modular, local-first voice assistant that controls your Windows PC with voice commands and provides fast speech-to-text dictation (Wispr Flow style). Wake word, speech-to-text and text-to-speech all run locally, so your audio never leaves your machine.
 
 ---
 
@@ -9,7 +9,7 @@ A modular, local-first voice assistant designed to control your Windows PC with 
 Every subsystem is isolated in its own folder with single-responsibility design:
 
 ```text
-Voice-PC-Assistant/
+Vocalis/
 ├── 📁 config/                 # Settings & defaults (hotkey, model sizes, steps)
 │   ├── settings.py
 │   └── default_settings.json
@@ -19,7 +19,7 @@ Voice-PC-Assistant/
 │   ├── stt.py                # faster-whisper local speech-to-text
 │   ├── tts.py                # pyttsx3 asynchronous text-to-speech queue
 │   ├── hotkey.py             # Global keyboard hotkey trigger (Ctrl+Space)
-│   └── wakeword.py           # 100% local ONNX continuous "Hey Jester" wake word detector
+│   └── wakeword.py           # 100% local ONNX continuous "Hey Jarvis" wake word detector
 │
 ├── 📁 windows_controls/       # Windows OS & hardware actions
 │   ├── volume.py             # Master volume, mute, unmute, level % (pycaw)
@@ -112,6 +112,6 @@ Try typing `volume up`, `open notepad`, `mute`, or `type hello from assistant`.
 ```bash
 python main.py
 ```
-* **Hands-free**: Simply say **`"Hey Jester"`** aloud! The assistant will say *"Yes?"* and listen for your command.
+* **Hands-free**: Simply say **`"Hey Jarvis"`** aloud! The assistant will say *"Yes?"* and listen for your command.
 * **Hotkey**: Press **`Ctrl + Space`** at any time to toggle listening.
 * Speak your command (e.g. *"volume up"*, *"open chrome"*, *"mute"*) or dictation.

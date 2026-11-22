@@ -275,7 +275,7 @@ def match_local_semantic_heuristic(raw: str) -> Optional[SemanticDecision]:
 # Employs fast structured reasoning to dynamically classify ANY task or answer
 # ---------------------------------------------------------------------------
 
-SEMANTIC_SYSTEM_PROMPT = """You are Jester, an intelligent Windows voice assistant.
+SEMANTIC_SYSTEM_PROMPT = """You are Jarvis, an intelligent Windows voice assistant.
 Your job is to analyze the user's spoken utterance and classify it into either:
 1. "task": The user wants you to control the PC or perform a system action.
 2. "answer": The user is asking a question, seeking information, or chatting.

@@ -9,7 +9,7 @@ except ImportError:
     _WHISPER_AVAILABLE = False
 
 ASSISTANT_INITIAL_PROMPT = (
-    "Jester, Windows desktop voice assistant. "
+    "Jarvis, Windows desktop voice assistant. "
     "Commands: volume up, volume down, set volume, mute, unmute, "
     "play, pause, next track, previous track, close tab, new tab, "
     "minimize window, maximize window, open notepad, open chrome, "

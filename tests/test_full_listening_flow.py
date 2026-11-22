@@ -14,14 +14,14 @@ from voice.capture import AudioRecorder
 from config.settings import settings
 
 def test_wakeword_detection():
-    print("Testing Hybrid Wake Word Detection ('Hey Jester' and 'Hey Jarvis')...")
+    print("Testing Hybrid Wake Word Detection ('Hey Jarvis' and 'Hey Jarvis')...")
     
     events = []
     def on_wake(phrase=None):
         events.append(phrase or "jarvis")
 
     detector = WakeWordDetector(
-        wake_word="hey_jester",
+        wake_word="hey_jarvis",
         threshold=0.45,
         speech_threshold=0.012,
         on_wake_detected=on_wake,
@@ -34,10 +34,10 @@ def test_wakeword_detection():
     stream = win32com.client.Dispatch("SAPI.SpFileStream")
     temp_wav = "C:/Users/jatin/Desktop/myprojects/Voice-PC-Assistant/tests/temp_flow_test.wav"
 
-    # Test phrase 1: Hey Jester
+    # Test phrase 1: Hey Jarvis
     stream.Open(temp_wav, 3)
     sapi.AudioOutputStream = stream
-    sapi.Speak("Hey Jester")
+    sapi.Speak("Hey Jarvis")
     stream.Close()
     
     data, sr = sf.read(temp_wav)
@@ -74,9 +74,9 @@ def test_wakeword_detection():
     while not events and (time.time() - t0 < 5.0):
         time.sleep(0.1)
         
-    print(f"  [Events for 'Hey Jester']: {events}")
-    assert len(events) > 0, "Failed to detect 'Hey Jester'!"
-    print("  [PASS] 'Hey Jester' successfully detected!")
+    print(f"  [Events for 'Hey Jarvis']: {events}")
+    assert len(events) > 0, "Failed to detect 'Hey Jarvis'!"
+    print("  [PASS] 'Hey Jarvis' successfully detected!")
     
     detector.stop()
 

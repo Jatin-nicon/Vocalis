@@ -37,11 +37,11 @@ class HybridWakeWordTester:
                 language="en",
                 beam_size=1,
                 temperature=0.0,
-                initial_prompt="Hey Jester, Jester, Hey Jarvis",
+                initial_prompt="Hey Jarvis, Jarvis",
             )
             text = " ".join(s.text for s in segs).strip().lower()
             text_clean = "".join(c for c in text if c.isalnum() or c.isspace()).strip()
-            keywords = {"jester", "hey jester", "chester", "gesture", "jasper", "tester", "jarvis"}
+            keywords = {"jarvis", "hey jarvis", "jervis", "jarviss"}
             if any(k in text_clean for k in keywords):
                 self.detected_events.append(("whisper", text))
 
@@ -68,9 +68,9 @@ def run_test():
     tester = HybridWakeWordTester()
     
     test_phrases = [
-        ("Hey Jester", True),
         ("Hey Jarvis", True),
-        ("Jester mute sound", True),
+        ("Hey Jarvis", True),
+        ("Jarvis mute sound", True),
         ("Open notepad right now", False),
     ]
     

@@ -18,10 +18,10 @@ except ImportError:
 
 @dataclass
 class AssistantConfig:
-    assistant_name: str = "Jester"
+    assistant_name: str = "Jarvis"
     hotkey: str = "ctrl+space"
     wake_word_enabled: bool = True
-    wake_word_model: str = "hey_jester"
+    wake_word_model: str = "hey_jarvis"
     wake_word_threshold: float = 0.5
     whisper_model: str = "small.en"
     whisper_compute_type: str = "int8"

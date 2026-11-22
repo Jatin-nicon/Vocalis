@@ -86,7 +86,7 @@ class VoicePCAssistant:
         if phrase:
             cleaned = phrase.lower().strip()
             # Strip out leading wake keywords
-            for kw in ["hey jester", "jester", "hey jarvis", "jarvis", "hey chester", "chester", "gesture", "tester"]:
+            for kw in ["hey jarvis", "jarvis", "jervis", "jarviss"]:
                 if cleaned.startswith(kw):
                     cleaned = cleaned[len(kw):].strip(" ,.?!")
                     break
@@ -96,7 +96,7 @@ class VoicePCAssistant:
                     break
             command_candidate = cleaned.strip(" ,.?!")
 
-        # If user spoke command in same phrase (e.g., "Hey Jester open chrome")
+        # If user spoke command in same phrase (e.g., "Hey Jarvis open chrome")
         if command_candidate and len(command_candidate.split()) >= 1:
             print(f"\n⚡ [Wake Word + Command Detected] \"{phrase}\"")
             print(f"👉 Direct Command: \"{command_candidate}\"")
@@ -104,8 +104,8 @@ class VoicePCAssistant:
             return
 
         # Otherwise standard wake: say "Yes?" and open listening
-        print("\n⚡ [Wake Word] \"Hey Jester\" detected!")
-        self.hud.set_state("listening", "Hey Jester detected")
+        print("\n⚡ [Wake Word] \"Hey Jarvis\" detected!")
+        self.hud.set_state("listening", "Hey Jarvis detected")
         if settings.voice_feedback:
             self.tts.speak("Yes?", wait=True)
             time.sleep(0.15)
@@ -301,7 +301,7 @@ class VoicePCAssistant:
         print("Commands: 'volume up', 'open chrome', 'start typing', 'stop typing', etc.\n")
         while True:
             try:
-                prompt_label = "✍️ [TYPING MODE] Jester> " if self.router.typing_mode else "🎙️ [COMMAND MODE] Jester> "
+                prompt_label = "✍️ [TYPING MODE] Jarvis> " if self.router.typing_mode else "🎙️ [COMMAND MODE] Jarvis> "
                 line = input(prompt_label).strip()
                 if not line:
                     continue
@@ -320,13 +320,13 @@ class VoicePCAssistant:
         if settings.wake_word_enabled:
             self.wakeword.start()
 
-        print(f"\n✅ Ready! Say \"Hey Jester\" or press '{settings.hotkey}' to give commands.")
+        print(f"\n✅ Ready! Say \"Hey Jarvis\" or press '{settings.hotkey}' to give commands.")
         print("Press Ctrl+C in terminal to exit.\n")
         try:
             while True:
                 time.sleep(0.5)
         except KeyboardInterrupt:
-            print("\nShutting down Jester...")
+            print("\nShutting down Jarvis...")
         finally:
             self.wakeword.stop()
             self.hotkey_listener.stop()

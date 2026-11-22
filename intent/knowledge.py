@@ -115,7 +115,7 @@ def match_knowledge_query(text: str) -> Optional[str]:
 
     # Identity
     if any(q in s for q in ["who are you", "what is your name", "what's your name", "who made you", "who created you"]):
-        return "I am Jester, your personal voice assistant designed to control your Windows PC and execute tasks."
+        return "I am Jarvis, your personal voice assistant designed to control your Windows PC and execute tasks."
 
     # Chit-chat
     if any(q in s for q in ["how are you", "how are you doing", "how's it going"]):
@@ -127,7 +127,7 @@ def match_knowledge_query(text: str) -> Optional[str]:
     if s in ["hello", "hey", "hi", "good morning", "good afternoon", "good evening"]:
         hour = datetime.now().hour
         greeting = "Good morning" if hour < 12 else ("Good afternoon" if hour < 17 else "Good evening")
-        return f"{greeting}! Jester is online and ready for your commands."
+        return f"{greeting}! Jarvis is online and ready for your commands."
 
     # Weather shortcut
     if any(q in s for q in ["what is the weather", "what's the weather", "weather forecast"]):
