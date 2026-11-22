@@ -1,0 +1,13 @@
+faster-whisper>=1.0.0
+sounddevice>=0.4.6
+soundfile>=0.12.1
+numpy>=1.24.0
+keyboard>=0.13.5
+pyautogui>=0.9.54
+pyperclip>=1.8.2
+pyttsx3>=2.90
+pycaw>=20240210
+comtypes>=1.2.0
+screen-brightness-control>=0.23.0
+python-dotenv>=1.0.0
+openwakeword>=0.6.0

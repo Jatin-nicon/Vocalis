@@ -1,0 +1,32 @@
+# --- Secrets & local config ---
+.env
+.env.*
+!.env.example
+config/user_settings.json
+
+# --- Python ---
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+env/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# --- Local-only artifacts ---
+*.wav
+*.mp3
+*.log
+logs/
+temp_flow_test.wav
+
+# --- Legacy backup of an older architecture (kept locally, not published) ---
+.backup_legacy/
+
+# --- OS / editor ---
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
