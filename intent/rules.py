@@ -247,7 +247,7 @@ def match_command(text: str) -> IntentResult:
 
     # 4. Tab & Window Controls
     if any(p in s for p in [
-        "new tab", "open a tab", "open new tab", "open a new tab",
+        "new tab", "open a tab", "open tab", "open new tab", "open a new tab",
         "create a tab", "create new tab", "another tab",
     ]):
         return IntentResult(True, "command", "new_tab", lambda: new_tab())
@@ -290,7 +290,8 @@ def match_command(text: str) -> IntentResult:
         return IntentResult(True, "command", "show_desktop", lambda: show_desktop())
 
     if any(p in s for p in [
-        "close window", "close this window", "close active window", "close current window",
+        "close window", "close the window", "close this window", "close active window",
+        "close current window", "close the current window",
         "close application", "close this application", "close the application",
         "close opened application", "close open application", "close the opened app",
         "close opened app", "close this app", "close the app", "close app",
@@ -354,7 +355,11 @@ def match_command(text: str) -> IntentResult:
     if m_open:
         app_candidate = m_open.group(1).strip()
         # Avoid trapping question queries like "open what" or tabs
-        if not any(app_candidate.startswith(w) for w in ["what", "why", "when", "how", "who", "tab", "window"]):
+        # Guard against question queries ("open what...") and tab/window references.
+        # NOTE: match on word boundaries -- a plain startswith() blocked "whatsapp",
+        # because "whatsapp".startswith("what") is True.
+        if not re.match(r"^(?:what|why|when|how|who)\b", app_candidate) and \
+           not re.match(r"^(?:tabs?|windows?)\b", app_candidate):
             return IntentResult(True, "command", "open_app", lambda: open_app(app_candidate))
 
     # 8. Close Apps (Supports "close the chrome application", "close calculator", "quit notepad")
